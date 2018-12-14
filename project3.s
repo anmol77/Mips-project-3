@@ -171,7 +171,7 @@ jr $ra
 ActualConversion:
 loop_for_conversion:
 lb $a0, 0($a3)
-beq $a0, 10, successful conversion          # last char is line feed ($a0 = 10) so exit the loop and start conversion
+beq $a0, 10, successful_conversion          # last char is line feed ($a0 = 10) so exit the loop and start conversion
 addi $a3, $a3, 1                            #  shifing the pointer right by one byte
 slti $t2, $a0, 114                          # checking the validity of character for range 0 to 113 else elminating the invalid possibilities with values greater than 113
 beq $t2, $zero, char_invalid
