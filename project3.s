@@ -1,3 +1,4 @@
+# this program uses the third approach to re-implement project 2 i.e processing the user input in a subprogram and using registers only for parameters and return values.
 .data
 user_input: .space 11000
 input_value_empty: .asciiz "Input is empty."
