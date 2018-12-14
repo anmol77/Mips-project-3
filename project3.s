@@ -138,7 +138,8 @@ li $a2, 19683                               #  highest possible value for the mo
 li $a3, 4                                   #  maximum possible length of valid string
 move $a0, $s3                               #  moving the value of valid character count to $a0
 jal adding_zero_in_front
-
+move $a2,$v1                                #  move the exponent bit after adding required zeroes in front as an argument for ActualConversion
+move $a3, $t8                               #  move the copied string to $a3 as an argument for function call and fresh calculation
 
 loop_for_conversion:
 lb $a0, 0($t0)
