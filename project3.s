@@ -217,36 +217,4 @@ div $a2, $a1
 mflo $a2                                    #  reducing n by 1 to make 27^n to 27^(n-1)
 j loop_for_conversion
 
-conversion_of_lower_case:
-addi $a0, $a0, -87
-mult $a0, $a2                               #a2 = 27^n
-mflo $t9
-add $t7, $t7, $t9                           #  adding the sum for each bit multiplication and storing it to $t7
-div $a2, $a1
-mflo $a2                                    #  reducing n by 1 to make 27^n to 27^(n-1)
-j loop_for_conversion
-
-adding_zero_in_front:
-sub $t5, $a3, $t1                          # difference between the length of string and the valid length required
-zero_adding_loop:
-beq $t5, 0, loop_for_conversion
-addi $t5, $t5, -1
-div $a2, $a1
-mflo $a2
-j zero_adding_loop
-
-too_long:
-li $v0, 4                                   #  system call code for printing string
-la $a0, input_too_long                      # load the message of stored in variable input_too_long
-syscall
-j exit
-
-print_decimal_value:
-li $v0, 1                                   # syscall code to print integer
-addi $a0, $t7, 0                            # print the total sum
-syscall
-
-exit:
-li $v0, 10                                  # end the program
-syscall
 
