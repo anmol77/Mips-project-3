@@ -132,6 +132,11 @@ beq $s2, -1, invalid_value                  #  if spaces between valid chars of 
 slti $t2, $s3, 4                            #  check if padding of the input is required. for instance, if user enters "ab" it needs to make sure to make it "00ab" for calculation"
 bne $t2, $zero, adding_zero_in_front_required
 
+adding_zero_in_front_required:
+li $a1, 27                                  #  loading the base
+li $a2, 19683                               #  highest possible value for the most significant bit for base-27
+li $a3, 4                                   #  maximum possible length of valid string
+
 loop_for_conversion:
 lb $a0, 0($t0)
 beq $a0, 10, print_decimal_value            # last char is line feed ($a0 = 10) so exit the loop and start conversion
