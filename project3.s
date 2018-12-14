@@ -172,9 +172,7 @@ ActualConversion:
 loop_for_conversion:
 lb $a0, 0($a3)
 beq $a0, 10, successful conversion          # last char is line feed ($a0 = 10) so exit the loop and start conversion
-
 addi $a3, $a3, 1                            #  shifing the pointer right by one byte
-
 slti $t2, $a0, 114                          # checking the validity of character for range 0 to 113 else elminating the invalid possibilities with values greater than 113
 beq $t2, $zero, char_invalid
 beq $a0, 32, loop_for_conversion            # ignoring the space character and going back to the loop
@@ -190,7 +188,6 @@ slti $t2, $a0, 97                           #  if $a0 is less than 97, $t2 is se
 bne $t2, $zero, char_invalid
 slti $t2, $a0, 114                          #if $a0 is less than 114, $t2 is set to 1 which includes the valid range of 97 to 113
 bne $t2, $zero, conversion_of_lower_case
-
 j loop_for_conversion
 
 conversion_of_digit:
@@ -201,6 +198,12 @@ add $t7, $t7, $t9                           #  adding the sum for each bit multi
 div $a2, $a1
 mflo $a2                                    #  reducing n by 1 to make 27^n to 27^(n-1) by dividing the highest possible value of most significant bit of 27 i.e 19683 by 27
 j loop_for_conversion
+
+conversion_of_lower_case:
+addi $a0, $a0, -87
+mult $a0, $a2                               #a2 = 27^n
+mflo $t9
+add $t7, $t7, $t9                           #  adding the sum for each bit multiplication and storing it to $t7
 
 conversion_of_upper_case:
 addi $a0, $a0, -55                          # for instance, we have to convert A's value to 10 but its ascii value is 65 so we subtract 55 to get 10
