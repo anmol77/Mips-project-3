@@ -153,6 +153,10 @@ li $v0, 1                                   # syscall code to print integer
 addi $a0, $t7, 0                            # print the total sum
 syscall
 
+adding_zero_in_front:
+sub $t5, $a3, $a0                         # difference between the length of string and the valid length required
+zero_adding_loop:
+
 loop_for_conversion:
 lb $a0, 0($t0)
 beq $a0, 10, print_decimal_value            # last char is line feed ($a0 = 10) so exit the loop and start conversion
