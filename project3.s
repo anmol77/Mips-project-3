@@ -217,4 +217,7 @@ div $a2, $a1
 mflo $a2                                    #  reducing n by 1 to make 27^n to 27^(n-1)
 j loop_for_conversion
 
+successful_conversion:
+add $v1, $t7, $zero                         # loading final conversion sum as a return value
+jr $ra
 
