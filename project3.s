@@ -156,6 +156,11 @@ syscall
 adding_zero_in_front:
 sub $t5, $a3, $a0                         # difference between the length of string and the valid length required
 zero_adding_loop:
+beq $t5, 0, zero_added_properly
+addi $t5, $t5, -1
+div $a2, $a1
+mflo $a2
+j zero_adding_loop
 
 loop_for_conversion:
 lb $a0, 0($t0)
