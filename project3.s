@@ -140,6 +140,9 @@ move $a0, $s3                               #  moving the value of valid charact
 jal adding_zero_in_front
 move $a2,$v1                                #  move the exponent bit after adding required zeroes in front as an argument for ActualConversion
 move $a3, $t8                               #  move the copied string to $a3 as an argument for function call and fresh calculation
+jal ActualConversion                        #  function that carries out the actual conversion of user input - uppercase characters, lowercase characters and digits
+move $a3, $v1                               #  an argument for the function to print
+jal print_decimal_value                     #  function call to print the decimal value
 
 loop_for_conversion:
 lb $a0, 0($t0)
