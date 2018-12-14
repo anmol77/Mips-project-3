@@ -162,6 +162,11 @@ div $a2, $a1
 mflo $a2
 j zero_adding_loop
 
+
+zero_added_properly:
+move $v1, $a2
+jr $ra
+
 loop_for_conversion:
 lb $a0, 0($t0)
 beq $a0, 10, print_decimal_value            # last char is line feed ($a0 = 10) so exit the loop and start conversion
