@@ -84,6 +84,12 @@ bne $t1, 1, check_previous_char
 li $t4, 1
 j loop
 
+too_long:
+li $v0, 4                                   #  system call code for printing string
+la $a0, input_too_long                      # load the message of stored in variable input_too_long
+syscall
+j exit
+
 char_is_digit:
 addi $s3, $s3, 1                            #  increase the valid character count
 addi $t1, $t1, 1                            #  increase character count
