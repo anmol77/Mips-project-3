@@ -162,13 +162,11 @@ div $a2, $a1
 mflo $a2
 j zero_adding_loop
 
-
 zero_added_properly:
 move $v1, $a2
 jr $ra
 
-
-ActualConversion:
+ActualConversion:                           # subprogram to deal with the conversion of digit, uppercase and lower case
 loop_for_conversion:
 lb $a0, 0($a3)
 beq $a0, 10, successful_conversion          # last char is line feed ($a0 = 10) so exit the loop and start conversion
