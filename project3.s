@@ -123,20 +123,14 @@ li $t4, 1                                   # assuming the space between valid c
 j loop
 
 calculate_value:
-li $a1, 27                                  #  loading the base
-li $a2, 19683                               #  highest possible value for the most significant bit for base-27
-li $a3, 4                                   #  maximum possible length of valid string
 li $t7, 0                                   #  register to store the conversion sum
 move $t0, $t8                               #  move the string again to $t0 for fresh calculation
-
 beq $t1, 0, input_is_empty                  #  string only has spaces
 slti $t2, $t1, 5                            #  checking the validity of the string length which can't be more than 4
 beq $t2, $zero, too_long                    #  too long to handle
-
 beq $s2, -1, invalid_value                  #  if spaces between valid chars of required length
-
 slti $t2, $s3, 4                            #  check if padding of the input is required. for instance, if user enters "ab" it needs to make sure to make it "00ab" for calculation"
-bne $t2, $zero, adding_zero_in_front
+bne $t2, $zero, adding_zero_in_front_required
 
 loop_for_conversion:
 lb $a0, 0($t0)
