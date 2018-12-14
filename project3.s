@@ -144,6 +144,10 @@ jal ActualConversion                        #  function that carries out the act
 move $a3, $v1                               #  an argument for the function to print
 jal print_decimal_value                     #  function call to print the decimal value
 
+exit:
+li $v0, 10                                  # end the program
+syscall
+
 loop_for_conversion:
 lb $a0, 0($t0)
 beq $a0, 10, print_decimal_value            # last char is line feed ($a0 = 10) so exit the loop and start conversion
