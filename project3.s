@@ -136,6 +136,9 @@ adding_zero_in_front_required:
 li $a1, 27                                  #  loading the base
 li $a2, 19683                               #  highest possible value for the most significant bit for base-27
 li $a3, 4                                   #  maximum possible length of valid string
+move $a0, $s3                               #  moving the value of valid character count to $a0
+jal adding_zero_in_front
+
 
 loop_for_conversion:
 lb $a0, 0($t0)
